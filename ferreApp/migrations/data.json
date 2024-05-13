@@ -19,6 +19,11 @@
             "username": "administrador",
             "email": "administrador@example.com",
             "password": "pbkdf2_sha256$720000$pdNSIrF0tUH6jWdRNsqxLL$xur5r7p9SbY1DL+Ec4jcoA6zsDuGuV2l/LbfgaiX1Ww="
+        },
+        {
+            "username": "admin",
+            "email": "",
+            "password": "pbkdf2_sha256$720000$oLtP1DBQz3MycMoQQHAz7C$2hQQ2FoorF92R7MlyJmo3n/jNyuyy1mhAjF+Wgo4BSc="
         }
     ],
     "grupos": [
