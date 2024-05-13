@@ -1,0 +1,38 @@
+{
+    "usuarios": [
+        {
+            "username": "bodeguero",
+            "email": "bodeguero@example.com",
+            "password": "pbkdf2_sha256$720000$D4RcfkjIbrgUM0NfBHS7i5$j7ZMiAkV+qB8vckozIYOEFqWB+CcTRx1AdU1eVqbARM="
+        },
+        {
+            "username": "vendedor",
+            "email": "vendedor@example.com",
+            "password": "pbkdf2_sha256$720000$5XtM7TNpkhRtpGBYcKKsVu$HDU0yjaFmcIfVSHxl1yZGlkhc/HjQ5YM8o3lvy2lDhI="
+        },
+        {
+            "username": "contador",
+            "email": "contador@example.com",
+            "password": "pbkdf2_sha256$720000$GqgjHHZHcmuj7pC8po7pTL$79KKfsfdI+XsdzXYNeIQrGg3hSyxWvtzH4GXCy8571w="
+        },
+        {
+            "username": "administrador",
+            "email": "administrador@example.com",
+            "password": "pbkdf2_sha256$720000$pdNSIrF0tUH6jWdRNsqxLL$xur5r7p9SbY1DL+Ec4jcoA6zsDuGuV2l/LbfgaiX1Ww="
+        }
+    ],
+    "grupos": [
+        {
+            "name": "bodeguero"
+        },
+        {
+            "name": "vendedor"
+        },
+        {
+            "name": "contador"
+        },
+        {
+            "name": "administrador"
+        }
+    ]
+}

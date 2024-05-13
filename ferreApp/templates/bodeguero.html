@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% block contenido %}
+{% load static %}
+
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'css/bodegaStyle.css' %}">
+<div class="centered-wrapper">
+    <section id="visualizacion-pedidos" class="center-items">
+        <h2>Ver Ordenes de Pedidos</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Número de Pedido</th>
+                    <th>Fecha de Pedido</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>001</td>
+                    <td>2022-04-01</td>
+                    <td>Pendiente</td>
+                    <td><button onclick="verDetallePedido('001')">Ver Detalle</button></td>
+                </tr>
+                <tr>
+                    <td>002</td>
+                    <td>2022-04-02</td>
+                    <td>Preparando</td>
+                    <td><button onclick="verDetallePedido('002')">Ver Detalle</button></td>
+                </tr>
+                <tr>
+                    <td>003</td>
+                    <td>2022-04-03</td>
+                    <td>En proceso</td>
+                    <td><button onclick="verDetallePedido('003')">Ver Detalle</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section id="aceptacion-preparacion-pedidos" class="center-items">
+        <h2>Aceptar y Preparar Pedidos</h2>
+        <table>
+            <tr>
+                <th>Número de Pedido</th>
+                <th>Fecha de Pedido</th>
+                <th>Estado</th>
+            </tr>
+            <tr>
+                <td>001</td>
+                <td>2022-04-01</td>
+                <td><button style="margin: 0 auto;">pedido listo</button></td>
+            </tr>
+            <tr>
+                <td>02</td>
+                <td>2022-04-01</td>
+                <td><button>pedido listo</button></td>
+            </tr>
+        </table>
+    </section>
+</div>
+{% endblock contenido %}

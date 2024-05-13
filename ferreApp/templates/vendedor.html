@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block contenido %}
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/vendedor.css'%}">
+<main>
+    <section id="productos">
+        <h2>Productos Disponibles en Bodega</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Cantidad</th>
+                    <th>Precio Unitario</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Aquí irán las filas de la tabla con los productos -->
+                <tr>
+                    <td>Producto 1</td>
+                    <td>10</td>
+                    <td>$50.00</td>
+                </tr>
+                <tr>
+                    <td>Producto 2</td>
+                    <td>5</td>
+                    <td>$30.00</td>
+                </tr>
+                <!-- Agrega más filas según sea necesario -->
+            </tbody>
+        </table>
+    </section>
+
+
+    <section id="despacho">
+        <h2>Despacho de Productos</h2>
+        <form action="">
+            <label for="cliente">Cliente:</label>
+            <input type="text" id="cliente" name="cliente" required>
+            <label for="producto">Producto:</label>
+            <input type="text" id="producto" name="producto" required>
+            <input type="submit" value="Registrar Entrega">
+        </form>
+    </section>
+</main>
+
+{% endblock %}

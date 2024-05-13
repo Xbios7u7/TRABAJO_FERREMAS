@@ -1,0 +1,113 @@
+#visualizacion-pedidos,
+#aceptacion-preparacion-pedidos {
+    text-align: center;
+    margin: 0 auto;
+    max-width: 800px;
+}
+
+#visualizacion-pedidos h2,
+#aceptacion-preparacion-pedidos h2 {
+    margin-bottom: 20px;
+}
+
+#visualizacion-pedidos table,
+#aceptacion-preparacion-pedidos table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+#visualizacion-pedidos th,
+#visualizacion-pedidos td,
+#aceptacion-preparacion-pedidos th,
+#aceptacion-preparacion-pedidos td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#visualizacion-pedidos th,
+#aceptacion-preparacion-pedidos th {
+    background-color: #f2f2f2;
+    color: #333;
+}
+
+#visualizacion-pedidos tbody tr:nth-child(even),
+#aceptacion-preparacion-pedidos tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+#visualizacion-pedidos tbody tr:hover,
+#aceptacion-preparacion-pedidos tbody tr:hover {
+    background-color: #f2f2f2;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.center-items {
+    text-align: center;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #555;
+}
+
+#visualizacion-pedidos table {
+    margin-bottom: 40px;
+}
+#menuPrincipal {
+    background: #333;
+    width: 100%;
+    padding: 30px;
+    margin: 0;
+    float: left;
+}
+
+@media screen and (max-width: 768px) {
+    #visualizacion-pedidos,
+    #aceptacion-preparacion-pedidos {
+        max-width: none;
+        width: 100%;
+        padding: 0 20px;
+    }
+
+    #visualizacion-pedidos table,
+    #aceptacion-preparacion-pedidos table {
+        margin-top: 10px;
+    }
+}
