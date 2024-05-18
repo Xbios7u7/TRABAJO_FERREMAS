@@ -129,3 +129,86 @@ def catalog_view(request):
     else:
         products = []
     return render(request, 'catalogo.html', {'products': products})
+
+from paypal.standard.forms import PayPalPaymentsForm
+from django.conf import settings
+import uuid
+from django.urls import reverse
+
+def checkout_view(request):
+
+    # Obtener los productos seleccionados del carrito de compras
+    cart = Cart(request)
+    cart_items = cart.cart_items
+    cart_total = cart.get_total_price()
+
+    # Obtener detalles de los productos desde la API o la base de datos
+    product_details = []
+    for item in cart_items:
+        product_id = item['id']
+        # Realizar una solicitud a la API o base de datos para obtener detalles del producto
+        api_url = f"http://localhost:8000/Productoget.php?id={product_id}"
+        try:
+            response = requests.get(api_url)
+            if response.status_code == 200:
+                product_data = response.json()
+                product_details.append(product_data)
+        except requests.exceptions.RequestException as e:
+            print(f"Error al obtener detalles del producto {product_id}: {e}")
+
+    host= request.get_host()
+
+    paypal_checkout = {
+        'business': settings.PAYPAL_RECEIVER_EMAIL,
+        'amount': cart_total,
+        'currency_code': 'USD',
+        'item_name': 'Productos en el carrito de compras',
+        'invoice': uuid.uuid4(),
+        'notify_url': f"http://{host}{reverse('paypal-ipn')}",
+        'return_url': f"http://{host}{reverse('payment-success')}",
+        'cancel_url': f"http://{host}{reverse('payment-failed')}",
+    }
+
+    paypal_payment = PayPalPaymentsForm(initial=paypal_checkout)
+
+    context = {
+        'cart': cart_items,
+        'total': cart_total,
+        'transaction_id': paypal_checkout['invoice'],
+        'paypal': paypal_payment,
+    }
+
+    return render(request, 'checkout.html')
+
+def payment_success_view(request):
+    cart = Cart(request)
+    cart_items = cart.cart_items
+    cart_total = cart.get_total_price()
+
+    transaction_id = request.GET.get('tx')  # ID de la transacción de PayPal
+
+    context = {
+        'cart': cart_items,
+        'total': cart_total,
+        'transaction_id': transaction_id
+    }
+
+    # Vaciar el carrito después de una compra exitosa
+    cart.clear()
+
+    return render(request, 'payment-success.html', context)
+
+def payment_failed_view(request):
+    cart = Cart(request)
+    cart_items = cart.cart_items
+    cart_total = cart.get_total_price()
+
+    transaction_id = request.GET.get('tx')  # ID de la transacción de PayPal, si está disponible
+
+    context = {
+        'cart': cart_items,
+        'total': cart_total,
+        'transaction_id': transaction_id
+    }
+
+    return render(request, 'payment-failed.html', context)

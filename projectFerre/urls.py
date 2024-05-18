@@ -6,4 +6,5 @@ from ferreApp import urls
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(urls)),
+    path('', include('paypal.standard.ipn.urls')),
 ]
