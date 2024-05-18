@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito de Compras</title>
+    <style>
+        .cart {
+            width: 80%;
+            margin: auto;
+            text-align: left;
+        }
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+        }
+        .cart-item img {
+            width: 50px;
+            height: auto;
+        }
+        .total {
+            font-size: 1.5em;
+            text-align: right;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Carrito de Compras</h1>
+    <div class="cart">
+        {% for item in cart %}
+            <div class="cart-item">
+                <img src="{% static 'img/productos/product' %}{{ item.product_id }}.jpg" alt="{{ item.nom_producto }}">
+                <div>{{ item.nom_producto }}</div>
+                <div>{{ item.quantity }}</div>
+                <div>${{ item.precio }}</div>
+                <div>
+                    <form action="{% url 'remove_from_cart' item.product_id %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit">Eliminar</button>
+                    </form>
+                </div>
+            </div>
+        {% endfor %}
+        <div class="total">
+            Total: ${{ total }}
+        </div>
+    </div>
+</body>
+</html>

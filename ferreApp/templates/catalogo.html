@@ -1,107 +1,72 @@
-{% extends 'base.html' %}
-{% block contenido %}
 {% load static %}
-<link rel="stylesheet" href="{% static 'css/catalogostyle.css' %}">
-<div class="Catalogo">
-    <center><h1>Catalogo de productos AAA</h1></center>
-    <div class="row">
-        <div class="col">
-            <div class="card">
-                <img src="{% static 'img/setpuntaatornillador.jpg' %}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Set puntas destornillador</h5>
-                    <h6 class="card-price">$19.99</h6>
-                    <a href="#" class="btn btn-primary">Agregar al carrito</a>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card">
-                <img src="{% static 'img/pumasbota_5.jpg' %}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">bota de seguridad puma</h5>
-                    <h6 class="card-price">$29.99</h6>
-                    <a href="#" class="btn btn-primary">Agregar al carrito</a>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card">
-                <img src="{% static 'img/alambrepuas.jpg' %}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Alambre de puas 35 mts</h5>
-                    <h6 class="card-price">$39.99</h6>
-                    <a href="#" class="btn btn-primary">Agregar al carrito</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col">
-            <div class="card">
-                <img src="{% static 'img/soldadora.jpg' %}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">soldadora</h5>
-                    <h6 class="card-price">$49.99</h6>
-                    <a href="#" class="btn btn-primary">Agregar al carrito</a>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card">
-                <img src="{% static 'img/kittaladro.jpg' %}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Kit talardo percutor</h5>
-                    <h6 class="card-price">$59.99</h6>
-                    <a href="#" class="btn btn-primary">Agregar al carrito</a>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card">
-                <img src="{% static 'img/kitdestornilladorstanley.png' %}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">JUEGO DESTORNILLADORES STANLEY 6 PIEZAS</h5>
-                    <h6 class="card-price">$69.99</h6>
-                    <a href="#" class="btn btn-primary">Agregar al carrito</a>
-                </div>
-            </div>
-        </div>
-    </div>
-        <div class="row">
-            <div class="col">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Productos</title>
+    <style>
+        .catalog {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .card {
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 16px;
+            margin: 16px;
+            width: 200px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .card img {
+            width: 100%;
+            height: auto;
+            border-bottom: 1px solid #ccc;
+            margin-bottom: 8px;
+        }
+        .card-title {
+            font-size: 1.2em;
+            margin: 0 0 8px 0;
+        }
+        .card-description {
+            font-size: 0.9em;
+            color: #555;
+        }
+        .card-price {
+            font-size: 1.1em;
+            color: #000;
+        }
+    </style>
+</head>
+<body>
+    <h1>Catálogo de Productos</h1>
+    <div class="catalog">
+        {% if products %}
+            {% for product in products %}
                 <div class="card">
-                    <img src="{% static 'img/cinturon.png' %}" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Cinturon porta herramientas</h5>
-                        <h6 class="card-price">$79.99</h6>
-                        <a href="#" class="btn btn-primary">Agregar al carrito</a>
-                    </div>
+                    <img src="{% static 'img/productos/product' %}{{ product.id_prod }}.jpg" alt="{{ product.nom_producto }}">
+                    <h2 class="card-title">{{ product.nom_producto }}</h2>
+                    <p class="card-description">{{ product.descripcion }}</p>
+                    <p class="card-price">Precio: ${{ product.precio }}</p>
+                    <p>Modelo: {{ product.modelo }}</p>
+                    <p>SKU: {{ product.sku }}</p>
+                    <p>Stock: {{ product.stock }}</p>
+                    <p>Categoría: {{ product.id_categoria }}</p>
+                    <p>Marca: {{ product.id_marca }}</p>
+                    <form action="{% url 'add_to_cart' product.id_prod %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit">Agregar al carrito</button>
+                    </form>
                 </div>
-            </div>
-            <div class="col">
-                <div class="card">
-                    <img src="{% static 'img/martillo.jpg' %}" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Martillo</h5>
-                        <h6 class="card-price">$89.99</h6>
-                        <a href="#" class="btn btn-primary">Agregar al carrito</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card">
-                    <img src="{% static 'img/llaveAllen.png' %}" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Llave Allen</h5>
-                        <h6 class="card-price">$99.99</h6>
-                        <a href="#" class="btn btn-primary">Agregar al carrito</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+            {% endfor %}
+        {% else %}
+            <p>No se encontraron productos.</p>
+        {% endif %}
     </div>
-{% endblock %}
+</body>
+</html>
+
 
 
 

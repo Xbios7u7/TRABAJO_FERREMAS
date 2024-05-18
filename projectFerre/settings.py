@@ -79,13 +79,6 @@ WSGI_APPLICATION = 'projectFerre.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -133,9 +126,18 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'ferreApp', 'static'),
 ]
 
-
+import os
+# Añade la URL de la API
+API_URL = 'http://localhost:8000'  # Cambia esta URL según tu configuración
+CART_SESSION_ID = 'cart'
+# Agrega estas líneas si no están presentes
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'ferreApp', 'static'),
+]
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+CSRF_COOKIE_SECURE = False

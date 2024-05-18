@@ -17,8 +17,7 @@ def bodeguero(request):
 
 
 
-def catalogo(request):
-    return render(request, 'catalogo.html')
+
 
 def contador(request):
     return render(request, 'contador.html')
@@ -61,3 +60,72 @@ from django.contrib.auth import logout
 def logout_view(request):
     logout(request)
     return redirect('home')  # Cambia 'home' por el nombre de la URL de tu página de inicio
+
+def catalogo(request):
+    api_url = "http://localhost:8000/Productoget.php"  # URL de tu API
+    try:
+            response = requests.get(api_url)
+            response.raise_for_status()  # Lanza una excepción si la respuesta contiene un error HTTP
+            data = response.json()  # Suponiendo que tu API devuelve una respuesta JSON
+            products = data.get("records", [])  # Obtener los productos del JSON
+            print(products)  # Imprimir los productos en la consola del servidor para depuración
+    except requests.exceptions.RequestException as e:
+            products = []
+            error_message = str(e)
+            print(error_message)  # Imprimir el mensaje de error en la consola del servidor para depuración
+
+    return render(request, 'catalogo.html', {'products':products})
+
+
+
+
+import requests
+from django.http import JsonResponse
+import requests
+from django.shortcuts import render
+
+
+import requests
+from django.shortcuts import render, redirect, get_object_or_404
+
+
+
+from django.shortcuts import render, redirect
+import requests
+from django.conf import settings
+from django.shortcuts import render, redirect
+from .cart import Cart
+
+
+def add_to_cart(request, product_id):
+    cart = Cart(request)
+    response = requests.post(f"{settings.API_URL}/add_to_cart.php", json={'id_prod': product_id})
+    if response.status_code == 200:
+        product = response.json()
+        if 'id_prod' in product:
+            cart.add(product)
+        else:
+            return render(request, 'error.html', {'message': f"Error en la respuesta de la API: {response.json().get('message', 'Unknown error')}"})
+    else:
+        return render(request, 'error.html', {'message': f"Error al conectar con la API: {response.status_code} {response.text}"})
+    return redirect('view_cart')
+
+def remove_from_cart(request, product_id):
+    cart = Cart(request)
+    response = requests.get(f"{settings.API_URL}/get_one.php?id_prod={product_id}")
+    if response.status_code == 200:
+        product = response.json()
+        cart.remove(product)
+    return redirect('view_cart')
+
+def view_cart(request):
+    cart = Cart(request)
+    return render(request, 'view_cart.html', {'cart': cart, 'total': cart.get_total_price()})
+
+def catalog_view(request):
+    response = requests.get(f"{settings.API_URL}/Productoget.php")
+    if response.status_code == 200:
+        products = response.json().get('records', [])
+    else:
+        products = []
+    return render(request, 'catalogo.html', {'products': products})
