@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block contenido %}
+<link rel="stylesheet" href="{% static 'css/home.css'%}">
+
+<section>
+    <div class="slider">
+        <ul>
+            <li><img id="cen" src="{% static 'img/ima1.jpg'%}"></li>
+            <li><img id="cen" src="{% static 'img/ima2.jpg' %}"></li>
+            <li><img id="cen" src="{% static 'img/ima3.jpg' %}"></li>
+        </ul>
+    </div>
+</section>
+
+<div class="container">
+    <div class="card">
+        <img src="{% static 'img/logo2.jpg' %}" alt="Producto">
+        <div class="card-body">
+            <div class="btn-container">
+                <a href="/catalogo" class="btn">Explorar Catálogo</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}

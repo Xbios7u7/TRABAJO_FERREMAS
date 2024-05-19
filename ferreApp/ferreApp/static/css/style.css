@@ -1,0 +1,240 @@
+#menuPrincipal {
+    background: #333;
+    width: 100%;
+    padding: 30px;
+    margin: 0;
+    float: left;
+}
+
+/* styles.css */
+
+.banner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 200px; /* Ajusta la altura según sea necesario */
+    overflow: hidden;
+}
+
+.banner img {
+    width: 100%;
+    height: auto;
+    max-width: 100%; /* Evita que la imagen se extienda más allá de su tamaño original */
+    max-height: 100%; /* Evita que la imagen se extienda más allá de su tamaño original */
+    object-fit: contain;
+    
+}
+
+
+ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+    display: flex;
+}
+
+ul li {
+    margin: 0 5%;
+}
+
+ul li:hover {
+    color: red;
+    cursor: pointer;
+}
+
+ul ul {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #333;
+    color: #fff;
+    padding: 5px;
+}
+
+ul ul li {
+    width: 100%;
+    margin: 2% 0;
+}
+
+ul li:hover > ul {
+    display: block;
+}
+
+footer {
+    float: left;
+    width: 100%;
+    background-color: rgb(34, 34, 34);
+}
+
+h2, h3, h4, h5, h6 {
+    color: #fff;
+    margin: 10px 0;
+}
+
+#pa {
+    float: left;
+    margin: 0 10px 0 0;
+    width: 45%;
+    padding: 1%;
+    text-align: center;
+}
+
+#fot, #fot1 {
+    float: right;
+    margin: 10px 0 0 10px;
+    width: 45%;
+    padding: 1%;
+    text-align: center;
+}
+
+#form {
+    margin: 0 auto;
+    border-radius: 10px;
+    border: 1px solid #666666;
+    width: 300px;
+    padding: 10px 25px; 
+}
+
+#in, .in {
+    font-size: 16px;
+    padding: 20px 0;
+    height: 56px;
+    border: none;
+    border-bottom: solid 1px rgba(0, 0, 0, .1);
+    background: #fff;
+    width: 280px;
+    box-sizing: border-box;
+    transition: all .3s linear;
+    color: #000;
+    font-weight: 400;
+}
+
+button {
+    width: auto;
+    min-width: 100px;
+    border-radius: 24px;
+    text-align: center;
+    padding: 15px 40px;
+    margin-top: 5px;
+}
+
+label {
+    font-size: 12.5px;
+    color: #000;
+    opacity: .8;
+    font-weight: 300;
+    font-family: -apple-system, BlinkMacSystemFont, "San Francisco", Helvetica, Arial, sans-serif;
+    margin: 10;
+}
+
+h1 {
+    margin: 0 auto;
+    text-align: center;
+    width: 250px;
+}
+
+th {
+    background-color: #111;
+    color: white;
+}
+
+td {
+    background-color: gray;
+    color: black;
+    text-align: center;
+}
+
+#inf {
+    text-align: center;
+    float: left;
+}
+
+.slider {
+    width: 95%;
+    margin: auto;
+    overflow: hidden;
+}
+
+.slider ul {
+    display: flex;
+    padding: 0;
+    width: 400%;
+    animation: cambio 15s infinite alternate linear;
+}
+
+.slider img {
+    width: 100%;
+    margin: auto;
+    display: block;
+}
+
+@keyframes cambio {
+    0% {
+        margin-left: 0;
+    }
+    15% {
+        margin-left: 0;
+    }
+    20% {
+        margin-left: -100%;
+    }
+    40% {
+        margin-left: -100%;
+    }
+    45% {
+        margin-left: -200%;
+    }
+    65% {
+        margin-left: -200%;
+    }
+    70% {
+        margin-left: -200%;
+    }
+    85% {
+        margin-left: -200%;
+    }
+    90% {
+        margin-left: -200%;
+    }
+    100% {
+        margin-left: -200%;
+    }
+}
+
+.nav-item {
+    color: white;
+    float: left;
+    list-style: none;
+    margin: 0% 5%;
+}
+
+.nav-item a {
+    text-decoration: none;
+}
+
+.nav-item:hover a {
+    color: red;
+}
+
+.nav-item {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.nav-item a {
+    text-decoration: none;
+    color: #ffffff;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #333333;
+    transition: background-color 0.3s;
+}
+
+.nav-item a:hover {
+    background-color: #555555;
+}

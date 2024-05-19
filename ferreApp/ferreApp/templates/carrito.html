@@ -1,0 +1,190 @@
+{% extends 'base.html' %}
+
+{% block contenido %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito de Compras</title>
+    <style>
+        .cart {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .cart-item {
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 16px;
+            margin: 16px;
+            width: 500px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .cart-item h2 {
+            font-size: 1.2em;
+            margin: 0 0 8px 0;
+        }
+        .cart-item p {
+            font-size: 0.9em;
+            color: #555;
+        }
+        .cart-controls {
+            display: flex;
+            align-items: center;
+        }
+        .cart-controls button {
+            padding: 10px;
+            margin: 0 5px;
+            font-size: 1em;
+            color: white;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .cart-controls button:hover {
+            background-color: #0056b3;
+        }
+        .cart-summary {
+            margin-top: 20px;
+            font-size: 1.2em;
+            text-align: center;
+        }
+        .checkout-button, .empty-cart-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 1em;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .checkout-button {
+            background-color: #28a745;
+        }
+        .checkout-button:hover {
+            background-color: #218838;
+        }
+        .empty-cart-button {
+            background-color: #dc3545;
+        }
+        .empty-cart-button:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+<body>
+    <h1>Carrito de Compras</h1>
+    <div class="cart" id="cart">
+        <!-- Aquí se mostrarán los productos del carrito -->
+    </div>
+
+    <div class="cart-summary" id="cart-summary">
+        Total: $<span id="total-price">0</span>
+    </div>
+
+    <button class="checkout-button" onclick="checkout()">Pagar</button>
+    <button class="empty-cart-button" onclick="vaciarCarrito()">Vaciar Carrito</button>
+
+    <script>
+        const API_GET_CART_URL = "http://localhost:8000/api/get_cart.php";
+        const API_UPDATE_CART_URL = "http://localhost:8000/api/update_cart.php";
+        const API_DELETE_ITEM_URL = "http://localhost:8000/api/delete_item.php";
+        const API_EMPTY_CART_URL = "http://localhost:8000/api/empty_cart.php";
+
+        async function obtenerCarrito() {
+            const response = await fetch(API_GET_CART_URL);
+            const data = await response.json();
+
+            const cartContainer = document.getElementById('cart');
+            const totalPriceElement = document.getElementById('total-price');
+            cartContainer.innerHTML = '';
+
+            if (data.items) {
+                let totalPrice = 0;
+
+                data.items.forEach(item => {
+                    const cartItem = document.createElement('div');
+                    cartItem.classList.add('cart-item');
+                    cartItem.innerHTML = `
+                        <img src="{% static 'img/productos/product' %}${item.producto.id_prod}.jpg" alt="${item.producto.nom_producto}" width="100">
+                        <div>
+                            <h2>${item.producto.nom_producto}</h2>
+                            <p>Precio: $${item.producto.precio}</p>
+                            <div class="cart-controls">
+                                <button onclick="updateQuantity(${item.id}, ${item.cantidad - 1})">-</button>
+                                <span>${item.cantidad}</span>
+                                <button onclick="updateQuantity(${item.id}, ${item.cantidad + 1})">+</button>
+                            </div>
+                        </div>
+                        <button onclick="eliminarDelCarrito(${item.id})">Eliminar</button>
+                    `;
+                    cartContainer.appendChild(cartItem);
+
+                    totalPrice += item.producto.precio * item.cantidad;
+                });
+
+                totalPriceElement.textContent = totalPrice.toFixed(2);
+            } else {
+                cartContainer.innerHTML = '<p>No hay productos en el carrito.</p>';
+                totalPriceElement.textContent = '0';
+            }
+        }
+
+        async function updateQuantity(itemId, newQuantity) {
+            const response = await fetch(API_UPDATE_CART_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ id: itemId, cantidad: newQuantity })
+            });
+            const data = await response.json();
+            console.log(data);
+            obtenerCarrito();
+        }
+
+        async function eliminarDelCarrito(itemId) {
+            const response = await fetch(API_DELETE_ITEM_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ id: itemId })
+            });
+            const data = await response.json();
+            console.log(data);
+            obtenerCarrito();
+        }
+
+        async function vaciarCarrito() {
+            const response = await fetch(API_EMPTY_CART_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({})
+            });
+            const data = await response.json();
+            console.log(data);
+            obtenerCarrito();
+        }
+
+        function checkout() {
+            // Redirigir a la página de pago o procesar el pago
+            alert('Procesar el pago');
+        }
+
+        obtenerCarrito();
+    </script>
+</body>
+</html>
+
+{% endblock %} 

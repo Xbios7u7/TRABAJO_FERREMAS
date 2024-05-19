@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block contenido %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/contador.css' %}">
+<main>
+    <div id="contador">
+        <h2>Contador</h2>
+        <p id="contador-pagos">Pagos confirmados: 0</p>
+    </div>
+    <form id="formulario-registro">
+        <h2>Registrar Entrega de Productos</h2>
+        <label for="cliente">nr boleta:</label>
+        <input type="text" id="cliente" name="cliente" required>
+        <label for="producto">nr de transferencia:</label>
+        <input type="text" id="producto" name="producto" required>
+        <input type="submit" value="Registrar Entrega">
+    </form>
+</main>
+
+
+{% endblock%}

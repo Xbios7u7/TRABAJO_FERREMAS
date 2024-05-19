@@ -1,0 +1,18 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+
+.list-group-item {
+    background-color: transparent;
+    border: none;
+}
+
+
+.paypal-button-container {
+    margin-top: 20px;
+}

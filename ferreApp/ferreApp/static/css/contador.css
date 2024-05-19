@@ -1,0 +1,99 @@
+#contador {
+    background-color: #f0f0f0;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+#contador h2 {
+    color: #333;
+    font-size: 24px;
+}
+
+#contador-pagos {
+    color: #666;
+    font-size: 18px;
+}
+
+#contador button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#contador button:hover {
+    background-color: #0056b3;
+}
+
+#formulario-registro {
+    background-color: #f0f0f0;
+    padding: 20px;
+}
+
+#formulario-registro h2 {
+    color: #333;
+    font-size: 24px;
+}
+
+#formulario-registro label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+#formulario-registro input[type="text"],
+#formulario-registro input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+#formulario-registro input[type="submit"] {
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+#formulario-registro input[type="submit"]:hover {
+    background-color: #218838;
+}
+
+@media only screen and (max-width: 600px) {
+    #contador {
+        padding: 10px;
+    }
+
+    #contador h2 {
+        font-size: 20px;
+    }
+
+    #contador-pagos {
+        font-size: 16px;
+    }
+
+    #contador button {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+
+    #formulario-registro {
+        padding: 10px;
+    }
+
+    #formulario-registro h2 {
+        font-size: 20px;
+    }
+
+    #formulario-registro label {
+        font-size: 14px;
+    }
+
+    #formulario-registro input[type="text"],
+    #formulario-registro input[type="submit"] {
+        padding: 8px;
+        font-size: 14px;
+    }
+}

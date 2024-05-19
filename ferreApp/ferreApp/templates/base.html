@@ -1,0 +1,87 @@
+{% load static %}
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>FerreMas</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <body>
+
+                <header>
+                        <div class="banner">
+                                <img src="{% static 'img/banner.jpg' %}" alt="Banner">
+                        </div>
+                        <nav id="menuPrincipal">
+                                <ul>
+                                        <li class="nav-item"><a href="{% url 'home' %}">INICIO</a></li>
+                                        {% if user.is_authenticated %}
+                                                <li class="nav-item"><a href="#">{{ user.username }}</a></li>
+                                                {% if user.username == 'bodeguero' %}
+                                                        <li class="nav-item"><a href="{% url 'bodeguero' %}">Bodega</a></li>
+                                                {% endif %}
+                                                {% if user.username == 'vendedor' %}
+                                                        <li class="nav-item"><a href="{% url 'ventas' %}">Vendedor</a></li>
+                                                {% endif %}
+                                                {% if user.username == 'administrador' %}
+                                                        <li class="nav-item"><a href="{% url 'administrador' %}">Administrador</a></li>
+                                                {% endif %}
+                                                {% if user.username == 'contador' %}
+                                                        <li class="nav-item"><a href="{% url 'contador' %}">Contador</a></li>
+                                                {% endif %}
+                                                <li class="nav-item"><a href="{% url 'logout'%}">Cerrar Sesión</a></li>
+                                        {% else %}
+                                                <li class="nav-item"><a href="{% url 'autenticacion' %}">INICIAR SESIÓN</a></li>
+                                        {% endif %}
+                                        <li class="nav-item"><a href="{% url 'catalogo'%}">Catálogo</a></li>
+                                </ul>
+                        </nav>
+                </header>
+                
+        <style>
+                body {
+                        margin-top: 0;
+                }
+                #menuPrincipal {
+                        background: #333;
+                        width: 100%;
+                        padding: 30px;
+                        margin: 0;
+                        float: left;
+                }
+        </style>
+
+        <div id="contenido">
+                {% block contenido %}
+                {% load static %}
+                {% endblock %}
+        </div>
+
+        <footer>
+                <section id="pa" style="color: white; text-align: left; padding-left: 40px;">
+                        <h2 style="font-size: 1.2em; margin-bottom: 10px;">INFORMACIÓN DE CONTACTO</h2>
+                        <p style="font-weight: bold; margin: 5px 0;">DIRECCION</p>
+                        <p style="margin: 3px 0;">Av. froilan</p>
+                        <p style="font-weight: bold; margin: 5px 0;">TELEFONO</p>
+                        <p style="margin: 3px 0;">0981241115 - 0989224223</p>
+                        <p style="font-weight: bold; margin: 5px 0;">EMAIL</p>
+                        <p style="margin: 3px 0;">servicio@ferremas.com</p>
+                </section>
+
+                <section id="fot">
+                        <h2>REDES SOCIALES</h2>
+                        <div>
+                                <ul>
+                                        <li><a href="https://www.facebook.com/" target="_blank"><img src="{% static 'img/fac.png' %}" width=80px height=180px></a></li>
+                                        <li><a href="https://mail.google.com/mail/" target="_blank"><img src="{% static 'img/cor.png' %}" width=80px height=120px></a></li>
+                                        <li><a href="https://twitter.com/" target="_blank"><img src="{% static 'img/twi.png' %}" width=80px height=100px></a></li>
+                                        <li><a href="https://www.instagram.com/" target="_blank"><img src="{% static 'img/ins.png' %}" width=80px height=100px></a></li>
+                                </ul>
+                        </div>
+                </section>
+        </footer>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+        </body>
+</html>
