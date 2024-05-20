@@ -1,9 +1,23 @@
+/* Estilos base */
 #menuPrincipal {
     background: #333;
     width: 100%;
-    padding: 30px;
+    padding: 10px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    border: 1px solid #fff; /* Añadir bordes */
+    border-radius: 5px; /* Añadir bordes redondeados */
+    box-sizing: border-box; /* Incluir bordes en el cálculo del tamaño */
+}
+
+#menuPrincipal ul {
+    list-style: none;
+    display: flex;
+    padding: 0;
     margin: 0;
-    float: left;
+    flex-wrap: wrap;
 }
 
 /* styles.css */
@@ -207,23 +221,7 @@ td {
 }
 
 .nav-item {
-    color: white;
-    float: left;
-    list-style: none;
-    margin: 0% 5%;
-}
-
-.nav-item a {
-    text-decoration: none;
-}
-
-.nav-item:hover a {
-    color: red;
-}
-
-.nav-item {
-    display: inline-block;
-    margin-right: 20px;
+    margin: 0 10px;
 }
 
 .nav-item a {
@@ -237,4 +235,160 @@ td {
 
 .nav-item a:hover {
     background-color: #555555;
+}
+
+/* Botón de hamburguesa */
+.navbar-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: #ffffff;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+/* Estilos para dispositivos móviles */
+@media (max-width: 768px) {
+    .navbar-toggle {
+        display: block;
+    }
+
+    #navbarMenu {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    #navbarMenu .nav-item {
+        width: 100%;
+        text-align: center;
+        margin: 10px 0;
+    }
+
+    #navbarMenu .nav-item a {
+        display: block;
+        width: 100%;
+    }
+
+    #menuPrincipal {
+        padding: 10px;
+    }
+}
+
+/* Estilos adicionales para dispositivos móviles */
+@media (max-width: 480px) {
+    #menuPrincipal {
+        padding: 10px;
+    }
+
+    #menuPrincipal ul {
+        flex-direction: column;
+    }
+
+    .nav-item {
+        margin: 5px 0;
+    }
+
+    .nav-item a {
+        padding: 10px;
+    }
+}
+
+footer {
+    float: left;
+    width: 100%;
+    background-color: rgb(34, 34, 34);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 20px;
+}
+
+footer {
+    background-color: #333; /* Ajusta el color de fondo según sea necesario */
+    color: white;
+    padding: 20px; /* Ajusta el relleno según sea necesario */
+}
+
+.redes ul li {
+    margin-bottom: 10px; /* Ajusta el espacio entre los enlaces */
+}
+
+@media only screen and (max-width: 600px) {
+    .invisible-mobile {
+        color: transparent !important;
+        text-decoration: none !important;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    
+    /* Estilos específicos para dispositivos móviles */
+    .redes ul {
+        padding-left: 20px; /* Ajusta el espacio a la izquierda para dispositivos móviles */
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    /* Estilos específicos para dispositivos móviles */
+    #pa {
+        padding-left: 20px; /* Ajusta el espacio a la izquierda para dispositivos móviles */
+    }
+}
+
+#fot {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px; /* Espacio interno alrededor del contenido */
+    background-color: rgb(34, 34, 34);
+    color: white;
+}
+
+.redes {
+    margin-bottom: 10px; /* Espacio entre la lista de texto y la lista de imágenes */
+}
+
+.redes ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.redes ul li {
+    margin: 10px; /* Espacio entre elementos de la lista de texto */
+}
+
+.redes-sociales-img {
+    margin-top: 10px 1; /* Espacio entre la lista de texto y la lista de imágenes */
+}
+
+.redes-sociales-img ul {
+    display: flex;
+    justify-content: center; /* Alinea las imágenes horizontalmente */
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.redes-sociales-img ul li {
+    margin: 10px 1; /* Espacio entre las imágenes */
+}
+
+.redes-sociales-img ul li img {
+    display: block;
+    width: 50px; /* Tamaño de las imágenes */
+    height: 50px; /* Tamaño de las imágenes */
+}
+
+/* Estilos adicionales para dispositivos móviles */
+@media (max-width: 768px) {
+    .redes-sociales-img ul {
+        flex-direction: column; /* Cambia la dirección de flex a columna para dispositivos móviles */
+    }
+
+    .redes-sociales-img ul li {
+        margin: 10px 0; /* Espacio entre las imágenes en dispositivos móviles */
+    }
 }

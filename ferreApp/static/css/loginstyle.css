@@ -162,9 +162,3 @@ main {
     }
 }
 
-footer {
-    float: left;
-    width: 100%;
-    background-color: rgb(34, 34, 34);
-    margin-top: 40px;
-}

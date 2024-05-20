@@ -2,8 +2,15 @@
 
 {% block contenido %}
 {% load static %}
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
     <link rel="stylesheet" href="{% static 'css/loginstyle.css' %}">
+</head>
+<body>
       
             <div class="contenedor__todo">
                 <div class="caja__trasera">
@@ -28,8 +35,9 @@
                         <input type="password" name="contrasena" placeholder="Contraseña">
                         <button type="submit">Entrar</button>
                         {% if mensaje_error %}
-                            <div id="mensaje-error-contraseña" style="color: red;">La contraseña es incorrecta</div>
+                            <div id="mensaje-error-contraseña" style="color: red;">{{ mensaje_error }}</div>
                         {% endif %}
+                        <div id="mensaje-error-contraseña-cliente" style="color: red; display: none;">La contraseña es incorrecta</div>
                     </form>
                     
                     
@@ -49,6 +57,7 @@
      
 
         <script src="{% static 'js/js.js'%}"></script>
-
+    </body>
+    </html>
 
 {% endblock %}
